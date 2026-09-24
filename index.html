@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin | Dashboard</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    </div>
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="index.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contact</a>
+        </li>
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Messages Dropdown Menu -->
+
+
+        <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button" fixed="true">
+            <i class="fas fa-th-large"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-link">
+        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: .8">
+        <span class="brand-text font-weight-light">Admin</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="images.png" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">Publications</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard / Home
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-bar"></i>
+                <p>
+                  Graphs
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#MS" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Monthly Sales</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#ATV" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>AVG Transaction</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#TVOS" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Total Sales value</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                  Reports
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="pages/tables/data.html#SAPPQ" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Product Quantity</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/tables/data.html#SR" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Sales Register</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/tables/data.html#STA" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Target v/s Actual</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Dashboard</h1>
+
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <label for="month">Month:</label>
+              <input type="number" id="month" name="month" min="1" max="12">
+
+              <label for="year">Year:</label>
+              <input type="number" id="year" name="year" min="2019" max="2023">
+
+              <button id="postData">Fetch Data</button>
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-4 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3 id="cmskpi"></h3>
+                  <p id="pmskpi"></p>
+                  <p>Monthly Sales</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+                <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-4 col-6">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3 id="cmpmkpi"></h3>
+                  <p id="pmpmkpi"></p>
+                  <p>Profit Margin</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-4 col-6">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3 id="cmsbkpi"></h3>
+                  <p id="pmsbkpi"></p>
+                  <p>Sales Bookings</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+
+            </div>
+            <!-- ./col -->
+          </div>
+          <!-- /.row -->
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12 connectedSortable">
+              <!-- Custom tabs (Charts with tabs)-->
+              <!-- Sales Chart -->
+              <div class="card" id="MS">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Monthly Sales</h3>
+                    <a href="javascript:void(0);">Sales Report</a>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex">
+                    <p class="d-flex flex-column">
+
+                    </p>
+                    <p class="ml-auto d-flex flex-column text-right">
+
+                    </p>
+                  </div>
+                  <!-- /.d-flex -->
+
+                  <div class="position-relative mb-4">
+                    <canvas id="sales-chart" height="400"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                    <span class="mr-2">
+                      <i class="fas fa-square text-primary"></i> Current Month
+                    </span>
+
+                    <span>
+                      <i class="fas fa-square text-gray"></i> Previous Month
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- Average Transaction Chart -->
+              <div class="card" id="ATV">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Average Transaction Value</h3>
+                    <a href="javascript:void(0);">Average Transaction Report</a>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex">
+                    <p class="d-flex flex-column">
+                      <!-- <span class="text-bold text-lg">$18,230.00</span>
+                      <span>Sales Over Time</span> -->
+                    </p>
+                    <p class="ml-auto d-flex flex-column text-right">
+                      <!-- <span class="text-success">
+                        <i class="fas fa-arrow-up"></i> 33.1%
+                      </span>
+                      <span class="text-muted">Since last month</span> -->
+                    </p>
+                  </div>
+                  <!-- /.d-flex -->
+
+                  <div class="position-relative mb-4">
+                    <canvas id="avg-tran-chart" height="400"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                    <span class="mr-2">
+                      <i class="fas fa-square text-primary"></i> Current Month
+                    </span>
+
+                    <span>
+                      <i class="fas fa-square text-gray"></i> Previous Month
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- Total Value of Sales Statistics -->
+              <div class="card" id="TVOS">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Total Value of Sales</h3>
+                    <a href="javascript:void(0);">Sales Count Report</a>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex">
+                    <p class="d-flex flex-column">
+
+                    </p>
+                    <p class="ml-auto d-flex flex-column text-right">
+
+                    </p>
+                  </div>
+                  <!-- /.d-flex -->
+
+                  <div class="position-relative mb-4">
+                    <canvas id="total-sales-chart" height="400"></canvas>
+                  </div>
+
+                  <div class="d-flex flex-row justify-content-end">
+                    <span class="mr-2">
+                      <i class="fas fa-square text-primary"></i> Current Month
+                    </span>
+
+                    <span>
+                      <i class="fas fa-square text-gray"></i> Previous Month
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+
+            </section>
+
+            <footer class="main-footer">
+              <strong>Final Year Project 2024-2025.
+                <div class="float-right d-none d-sm-inline-block">
+                  <b>B.TECH</b>
+                </div>
+            </footer>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+              <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+          </div>
+          <!-- ./wrapper -->
+
+          <!-- jQuery -->
+          <script src="plugins/jquery/jquery.min.js"></script>
+          <!-- jQuery UI 1.11.4 -->
+          <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+          <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+          <script>
+            $.widget.bridge('uibutton', $.ui.button)
+          </script>
+          <!-- Bootstrap 4 -->
+          <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+          <!-- ChartJS -->
+          <script src="plugins/chart.js/Chart.min.js"></script>
+          <!-- Sparkline -->
+          <script src="plugins/sparklines/sparkline.js"></script>
+          <!-- JQVMap -->
+          <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+          <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+          <!-- jQuery Knob Chart -->
+          <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+          <!-- daterangepicker -->
+          <script src="plugins/moment/moment.min.js"></script>
+          <script src="plugins/daterangepicker/daterangepicker.js"></script>
+          <!-- Tempusdominus Bootstrap 4 -->
+          <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+          <!-- Summernote -->
+          <script src="plugins/summernote/summernote-bs4.min.js"></script>
+          <!-- overlayScrollbars -->
+          <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+          <!-- AdminLTE App -->
+          <script src="dist/js/adminlte.js"></script>
+          <!-- AdminLTE for demo purposes -->
+          <script src="dist/js/demo.js"></script>
+          <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+          <script src="dist/js/pages/dashboard.js"></script>
+
+          <body>
+            <script>
+              $(document).ready(function () {
+                function fetchData(month, year) {
+                  const postData = {
+                    monthNumber: month,
+                    year: year
+                  };
+
+                  if (month == 1 && year == 2019) {
+                    alert("Previous data do not exists !")
+                  } else {
+
+                    $.ajax({
+                      url: 'https://localhost:7071/MonthlySales',
+                      type: 'POST',
+                      contentType: 'application/json',
+                      data: JSON.stringify(postData),
+                      success: function (response) {
+                        console.log('Response:', response);
+
+                        const { currentMonthSales, previousMonthSales } = response;
+
+                        $('#cmskpi').text(response.currentMonthSales);
+                        $('#pmskpi').text(response.previousMonthSales);
+
+                        if (currentMonthSales < previousMonthSales) {
+                          $('#pmskpi').html(`<i class="fas fa-arrow-down" style="color: red;"></i> ${previousMonthSales}`);
+                        } else if (currentMonthSales > previousMonthSales) {
+                          $('#pmskpi').html(`<i class="fas fa-arrow-up" style="color: green;"></i> ${previousMonthSales}`);
+                        }
+                        const formattedResponse = `<h2><strong>Current Month Sales:</strong> ${currentMonthSales.toLocaleString()}
+  <strong>Previous Month Sales:</strong> ${previousMonthSales.toLocaleString()}
+                  </h2>
+              `;
+
+                        $('#responseData').html(formattedResponse);
+                      },
+                      error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        alert('An error occurred while sending data.');
+                      }
+                    });
+
+                    $.ajax({
+                      url: 'https://localhost:7071/MonthlySales/GetAverageProfitMarginKPI',
+                      type: 'POST',
+                      contentType: 'application/json',
+                      data: JSON.stringify(postData),
+                      success: function (response) {
+                        console.log('Response:', response);
+
+                        const { currentMonthProfitMargin, previousMonthProfitMargin } = response;
+
+                        $('#cmpmkpi').text(response.currentMonthProfitMargin);
+                        $('#pmpmkpi').text(response.previousMonthProfitMargin);
+
+                        if (currentMonthProfitMargin < previousMonthProfitMargin) {
+                          $('#pmpmkpi').html(`<i class="fas fa-arrow-down" style="color: red;"></i> ${previousMonthProfitMargin}`);
+                        } else if (currentMonthProfitMargin > previousMonthProfitMargin) {
+                          $('#pmpmkpi').html(`<i class="fas fa-arrow-up" style="color: green;"></i> ${previousMonthProfitMargin}`);
+                        }
+
+
+                        const formattedResponse = `<h2><strong>Current Month Profit Margin:</strong> ${currentMonthProfitMargin.toLocaleString()}
+  <strong>Previous Month Profit Margin:</strong> ${previousMonthProfitMargin.toLocaleString()}
+                  </h2>
+              `;
+
+                        $('#responseData').html(formattedResponse);
+                      },
+                      error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        alert('An error occurred while sending data.');
+                      }
+                    });
+
+                    $.ajax({
+                      url: 'https://localhost:7071/MonthlySales/MonthlySalesBookingsKPI',
+                      type: 'POST',
+                      contentType: 'application/json',
+                      data: JSON.stringify(postData),
+                      success: function (response) {
+                        console.log('Response:', response);
+
+                        const { currentMonthBookings, previousMonthBookings } = response;
+
+                        $('#cmsbkpi').text(response.currentMonthBookings);
+                        $('#pmsbkpi').text(response.previousMonthBookings);
+
+                        if (currentMonthBookings < previousMonthBookings) {
+                          $('#pmsbkpi').html(`<i class="fas fa-arrow-down" style="color: red;"></i> ${previousMonthBookings}`);
+                        } else if (currentMonthBookings > previousMonthBookings) {
+                          $('#pmsbkpi').html(`<i class="fas fa-arrow-up" style="color: green;"></i> ${previousMonthBookings}`);
+                        }
+
+                        const formattedResponse = `<h2><strong>Current Month Bookings:</strong> ${currentMonthBookings.toLocaleString()}
+  <strong>Previous Month Bookings:</strong> ${previousMonthBookings.toLocaleString()}
+                  </h2>
+              `;
+
+                        $('#responseData').html(formattedResponse);
+                      },
+                      error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        alert('An error occurred while sending data.');
+                      }
+                    });
+                  }
+                }
+                fetchData(6, 2021);
+
+                $('#postData').click(function () {
+                  const month = $('#month').val();
+                  const year = $('#year').val();
+
+                  if (!month || !year) {
+                    alert('Please enter both month and year.');
+                    return;
+                  }
+
+                  fetchData(parseInt(month, 10), parseInt(year, 10));
+                });
+              });
+            </script>
+
+            <script>
+              // MONTHLY SALES STATISTICS REPORTS
+              $(function () {
+                'use strict'
+
+                var ticksStyle = {
+                  fontColor: '#495057',
+                  fontStyle: 'bold'
+                }
+
+                var mode = 'index'
+                var intersect = true
+
+                var $salesChart = $('#sales-chart')
+
+                var salesChart = new Chart($salesChart, {
+                  type: 'bar',
+                  data: {
+                    labels: [],
+                    datasets: [
+                      {
+                        label: 'Current Month Sales',
+                        backgroundColor: '#007bff',
+                        borderColor: '#007bff',
+                        data: []
+                      },
+                      {
+                        label: 'Previous Month Sales',
+                        backgroundColor: '#ced4da',
+                        borderColor: '#ced4da',
+                        data: []
+                      }
+                    ]
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                      mode: mode,
+                      intersect: intersect
+                    },
+                    hover: {
+                      mode: mode,
+                      intersect: intersect
+                    },
+                    legend: {
+                      display: false
+                    },
+                    scales: {
+                      yAxes: [{
+                        // display: false,
+                        gridLines: {
+                          display: true,
+                        },
+                        ticks: $.extend({
+                          beginAtZero: true,
+
+                          // Include a dollar sign in the ticks
+                          callback: function (value) {
+                            if (value >= 1000) {
+                              value /= 1000
+                              value += 'k'
+                            }
+
+                            return 'Rs.' + value
+                          }
+                        }, ticksStyle)
+                      }],
+                      xAxes: [{
+                        display: true,
+                        gridLines: {
+                          display: true
+                        },
+                        ticks: ticksStyle
+                      }]
+                    }
+                  }
+                });
+
+
+                function fetchData(month, year) {
+                  const postData = {
+                    monthNumber: month,
+                    year: year
+                  };
+
+                  $.ajax({
+                    url: 'https://localhost:7071/MonthlySales/GetMonthlySalesStatistics', // Replace with your API URL
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(postData),
+                    success: function (response) {
+                      console.log('Response:', response);
+                      // Parse response and update chart
+                      var labels = []
+                      var currentSales = []
+                      var previousSales = []
+
+                      response.forEach(function (item) {
+                        labels.push(item.stateName)
+                        currentSales.push(item.currentMonthSales)
+                        previousSales.push(item.previousMonthSales)
+                      })
+
+                      // Update chart data
+                      salesChart.data.labels = labels
+                      salesChart.data.datasets[0].data = currentSales
+                      salesChart.data.datasets[1].data = previousSales
+
+                      // Re-render the chart
+                      salesChart.update()
+                    },
+                    error: function (xhr, status, error) {
+                      console.error('Failed to fetch data:', error)
+                    }
+                  });
+                }
+
+                fetchData(6, 2021);
+
+                // Fetch data based on user input
+                $('#postData').click(function () {
+                  const month = $('#month').val();
+                  const year = $('#year').val();
+
+                  // Validate inputs
+                  if (!month || !year) {
+                    alert('Please enter both month and year.');
+                    return;
+                  }
+
+                  // Fetch data with user input
+                  fetchData(parseInt(month, 10), parseInt(year, 10));
+                });
+              });
+
+            </script>
+
+            <script>
+              // AVERAGE TRANSACTION VALUE STATISTICS REPORTS
+              $(function () {
+                'use strict'
+
+                var ticksStyle = {
+                  fontColor: '#495057',
+                  fontStyle: 'bold'
+                }
+
+                var mode = 'index'
+                var intersect = true
+
+                var $salesChart = $('#avg-tran-chart')
+                // eslint-disable-next-line no-unused-vars
+                var salesChart = new Chart($salesChart, {
+                  type: 'bar',
+                  data: {
+                    labels: [],
+                    datasets: [
+                      {
+                        label: 'Current Month Average Transaction',
+                        backgroundColor: '#007bff',
+                        borderColor: '#007bff',
+                        data: []
+                      },
+                      {
+                        label: 'Previous Month Average Transaction',
+                        backgroundColor: '#ced4da',
+                        borderColor: '#ced4da',
+                        data: []
+                      }
+                    ]
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                      mode: mode,
+                      intersect: intersect
+                    },
+                    hover: {
+                      mode: mode,
+                      intersect: intersect
+                    },
+                    legend: {
+                      display: false
+                    },
+                    scales: {
+                      yAxes: [{
+                        // display: false,
+                        gridLines: {
+                          display: true,
+                        },
+                        ticks: $.extend({
+                          beginAtZero: true,
+
+                        }, ticksStyle)
+                      }],
+                      xAxes: [{
+                        display: true,
+                        gridLines: {
+                          display: true
+                        },
+                        ticks: ticksStyle
+                      }]
+                    }
+                  }
+                });
+
+
+                function fetchData(month, year) {
+                  const postData = {
+                    monthNumber: month,
+                    year: year
+                  };
+
+                  $.ajax({
+                    url: 'https://localhost:7071/MonthlySales/GetAverageTransactionValueStatistics', // Replace with your API URL
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(postData),
+                    success: function (response) {
+                      console.log('Response:', response);
+                      // Parse response and update chart
+                      var labels = []
+                      var currentTransactionValue = []
+                      var previousTransactionValue = []
+
+                      response.forEach(function (item) {
+                        labels.push(item.stateName)
+                        currentTransactionValue.push(item.currMonthAvgTransactionValue)
+                        previousTransactionValue.push(item.prevMonthAvgTransactionValue)
+                      })
+
+                      // Update chart data
+                      salesChart.data.labels = labels
+                      salesChart.data.datasets[0].data = currentTransactionValue
+                      salesChart.data.datasets[1].data = previousTransactionValue
+
+                      // Re-render the chart
+                      salesChart.update()
+                    },
+                    error: function (xhr, status, error) {
+                      console.error('Failed to fetch data:', error)
+                    }
+                  });
+                }
+
+                fetchData(6, 2021);
+
+                // Fetch data based on user input
+                $('#postData').click(function () {
+                  const month = $('#month').val();
+                  const year = $('#year').val();
+
+                  // Validate inputs
+                  if (!month || !year) {
+                    alert('Please enter both month and year.');
+                    return;
+                  }
+
+                  // Fetch data with user input
+                  fetchData(parseInt(month, 10), parseInt(year, 10));
+                });
+              });
+
+            </script>
+
+            <script>
+              // TOTAL VALUE OF SALES STATISTICS REPORTS
+              $(function () {
+                'use strict'
+
+                var ticksStyle = {
+                  fontColor: '#495057',
+                  fontStyle: 'bold'
+                }
+
+                var mode = 'index'
+                var intersect = true
+
+                var $salesChart = $('#total-sales-chart')
+
+                var salesChart = new Chart($salesChart, {
+                  type: 'bar',
+                  data: {
+                    labels: [],
+                    datasets: [
+                      {
+                        label: 'Current Month Total Sales',
+                        backgroundColor: '#007bff',
+                        borderColor: '#007bff',
+                        data: []
+                      },
+                      {
+                        label: 'Previous Month Total Sales',
+                        backgroundColor: '#ced4da',
+                        borderColor: '#ced4da',
+                        data: []
+                      }
+                    ]
+                  },
+                  options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                      mode: mode,
+                      intersect: intersect
+                    },
+                    hover: {
+                      mode: mode,
+                      intersect: intersect
+                    },
+                    legend: {
+                      display: false
+                    },
+                    scales: {
+                      yAxes: [{
+                        // display: false,
+                        gridLines: {
+                          display: true,
+                        },
+                        ticks: $.extend({
+                          beginAtZero: true,
+
+                          callback: function (value) {
+                            if (value >= 1000) {
+                              value /= 1000
+                              value += 'k'
+                            }
+
+                            return value
+                          }
+                        }, ticksStyle)
+                      }],
+                      xAxes: [{
+                        display: true,
+                        gridLines: {
+                          display: true
+                        },
+
+                        ticks: ticksStyle
+                      }]
+                    }
+                  }
+                });
+
+
+                function fetchData(month, year) {
+                  const postData = {
+                    monthNumber: month,
+                    year: year
+                  };
+
+                  $.ajax({
+                    url: 'https://localhost:7071/MonthlySales/GetTotalValueOfSalesStatistics',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(postData),
+                    success: function (response) {
+                      console.log('Response:', response);
+                      // Parse response and update chart
+                      var labels = []
+                      var currentTotalSales = []
+                      var previousTotalSales = []
+
+                      response.forEach(function (item) {
+                        labels.push(item.stateName)
+                        currentTotalSales.push(item.currMonthSalesCount)
+                        previousTotalSales.push(item.prevMonthSalesCount)
+                      })
+
+                      // Update chart data
+                      salesChart.data.labels = labels
+                      salesChart.data.datasets[0].data = currentTotalSales
+                      salesChart.data.datasets[1].data = previousTotalSales
+
+                      // Re-render the chart
+                      salesChart.update()
+                    },
+                    error: function (xhr, status, error) {
+                      console.error('Failed to fetch data:', error)
+                    }
+                  });
+                }
+
+                fetchData(6, 2021);
+
+                // Fetch data based on user input
+                $('#postData').click(function () {
+                  const month = $('#month').val();
+                  const year = $('#year').val();
+
+                  // Validate inputs
+                  if (!month || !year) {
+                    alert('Please enter both month and year.');
+                    return;
+                  }
+
+                  // Fetch data with user input
+                  fetchData(parseInt(month, 10), parseInt(year, 10));
+                });
+              });
+
+            </script>
+          </body>
+
+</html>

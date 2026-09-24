@@ -1,0 +1,6 @@
+ID,Name,Email,Phone,Password,UserRoleID,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn,IsActive
+1,Sagar Patil,sagarpatil2757@gmail.com,7719912757,sagar27,1,1,2024-10-14 11:15:45,1,2024-10-15 11:20:34,1
+2,Suhas Shipugade,suhasshipugade6563@gmail.com,7218976563,suhas07,2,1,2024-10-15 11:15:45,1,2024-10-16 11:20:34,1
+3,Amol Patil,amolpatil4545@gmail.com,9096324545,amol45,3,1,2024-10-16 11:15:45,1,2024-10-17 11:20:34,1
+4,Adarsh Shinde,adarshshinde2014@gmail.com,9021420014,adarsh07,4,1,2024-10-17 11:15:45,1,2024-10-18 11:20:34,1
+5,Siddharth Ghatage,siddharthghatage6843@gmail.com,9356666843,siddhu03,5,1,2024-10-18 11:15:45,1,2024-10-19 11:20:34,1

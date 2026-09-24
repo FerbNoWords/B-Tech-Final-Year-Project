@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Users Data</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+   <!-- Google Font: Source Sans Pro -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+   <!-- Ionicons -->
+   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+   <!-- Tempusdominus Bootstrap 4 -->
+   <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+   <!-- iCheck -->
+   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+   <!-- JQVMap -->
+   <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+   <!-- Theme style -->
+   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+   <!-- overlayScrollbars -->
+   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+   <!-- Daterange picker -->
+   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+   <!-- summernote -->
+   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+</head>
+<body>
+  <h1>Fetch Data From API</h1>
+  <label for="kpi">Select KPI/Statistics/Report:</label>
+  <select id="kpi">
+    <option value="monthlySales">Monthly Sales KPI</option>
+    <option value="profitMargin">Profit Margin KPI</option>
+    <option value="salesBookings">Sales Bookings KPI</option>
+    <option value="salesStatistics">Monthly Sales Statistics</option>
+    <option value="averageTransactionValue">Average Transaction Value Statistics</option>
+    <option value="totalValueOfSalesStatistics">Total Value of Sales Statistics</option> 
+    <option value="salesAsPerProductQuantity">Sales As Per Product Quantity Report</option> 
+    <option value="salesRegister">Sales Register Report</option>
+    <option value="salesTargetVSActual">Sales Target VS Actual Report</option> 
+  </select>
+  <br><br>
+    <label for="month">Month (Number):</label>
+    <input type="number" id="month" name="month" min="1" max="12">
+    
+    <label for="year">Year:</label>
+    <input type="number" id="year" name="year" min="2019" max="2023">
+    
+    <button id="postData">Fetch Data</button>
+  <div id="output">
+    <h3>Response:</h3>
+    
+
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3 id="cmskpi"></h3>
+          <p id="pmskpi"></p>
+          <p>Monthly Sales</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3 id="cmpmkpi"></h3>
+          <p id="pmpmkpi"></p>
+          <p>Profit Margin</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3 id="cmsbkpi"></h3>
+          <p id="pmsbkpi"></p>
+          <p>Sales Bookings</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+  
+  <pre id="responseData"></pre>
+  <script>
+
+    $(document).ready(function() {
+      $('#postData').click(function() {
+        
+        const monthNumber = $('#month').val();
+        const year = $('#year').val();
+
+        const postData = {
+          monthNumber: monthNumber,
+          year: year
+        };
+
+        const selectedValue = $('#kpi').val();  // Get selected value from dropdown
+
+        if (selectedValue === 'monthlySales') {
+          $.ajax({
+          url: 'https://localhost:7071/MonthlySales', 
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(postData), 
+          success: function(response) {
+            console.log('Response:', response); 
+
+            const { currentMonthSales, previousMonthSales } = response;
+            
+            $('#cmskpi').text(response.currentMonthSales);
+            $('#pmskpi').text(response.previousMonthSales);
+
+            if (currentMonthSales < previousMonthSales) {
+                $('#pmskpi').html(`<i class="fas fa-arrow-down" style="color: red;"></i> ${previousMonthSales}`);
+            } else if (currentMonthSales > previousMonthSales) {
+                $('#pmskpi').html(`<i class="fas fa-arrow-up" style="color: green;"></i> ${previousMonthSales}`);
+            }
+            const formattedResponse = `<h2><strong>Current Month Sales:</strong> ${currentMonthSales.toLocaleString()}
+<strong>Previous Month Sales:</strong> ${previousMonthSales.toLocaleString()}
+                </h2>
+            `;
+            
+            $('#responseData').html(formattedResponse);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+          }
+        });
+        } if (selectedValue === 'monthlySales') {
+          $.ajax({
+          url: 'https://localhost:7071/MonthlySales/GetAverageProfitMarginKPI', 
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(postData), 
+          success: function(response) {
+            console.log('Response:', response); 
+
+            const { currentMonthProfitMargin, previousMonthProfitMargin } = response;
+
+            $('#cmpmkpi').text(response.currentMonthProfitMargin);
+            $('#pmpmkpi').text(response.previousMonthProfitMargin);
+
+            if (currentMonthProfitMargin < previousMonthProfitMargin) {
+                $('#pmpmkpi').html(`<i class="fas fa-arrow-down" style="color: red;"></i> ${previousMonthProfitMargin}`);
+            } else if (currentMonthProfitMargin > previousMonthProfitMargin) {
+                $('#pmpmkpi').html(`<i class="fas fa-arrow-up" style="color: green;"></i> ${previousMonthProfitMargin}`);
+            }
+
+
+            const formattedResponse = `<h2><strong>Current Month Profit Margin:</strong> ${currentMonthProfitMargin.toLocaleString()}
+<strong>Previous Month Profit Margin:</strong> ${previousMonthProfitMargin.toLocaleString()}
+                </h2>
+            `;
+            
+            $('#responseData').html(formattedResponse);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+          }
+        });
+        }  if (selectedValue === 'monthlySales') {
+          $.ajax({
+          url: 'https://localhost:7071/MonthlySales/MonthlySalesBookingsKPI', 
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(postData), 
+          success: function(response) {
+            console.log('Response:', response); 
+
+            const { currentMonthBookings, previousMonthBookings } = response;
+
+            $('#cmsbkpi').text(response.currentMonthBookings);
+            $('#pmsbkpi').text(response.previousMonthBookings);
+
+            if (currentMonthBookings < previousMonthBookings) {
+                $('#pmsbkpi').html(`<i class="fas fa-arrow-down" style="color: red;"></i> ${previousMonthBookings}`);
+            } else if (currentMonthBookings > previousMonthBookings) {
+                $('#pmsbkpi').html(`<i class="fas fa-arrow-up" style="color: green;"></i> ${previousMonthBookings}`);
+            }
+
+            const formattedResponse = `<h2><strong>Current Month Bookings:</strong> ${currentMonthBookings.toLocaleString()}
+<strong>Previous Month Bookings:</strong> ${previousMonthBookings.toLocaleString()}
+                </h2>
+            `;
+            
+            $('#responseData').html(formattedResponse);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+          }
+        });
+        } else if (selectedValue === 'salesStatistics') {
+          $.ajax({
+          url: 'https://localhost:7071/MonthlySales/GetMonthlySalesStatistics', 
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(postData), 
+          success: function(response) {
+            console.log('Response:', response); 
+
+            const { stateName, currentMonthSales, previousMonthSales } = response;
+            let formattedResponse = "<h2>Sales Data:</h2><ul>";
+            response.forEach(function(item) {
+      formattedResponse += `<h2><li><strong>State Name:</strong> ${item.stateName.toLocaleString()} 
+                            <br><strong>Current Month Sales:</strong> ${item.currentMonthSales.toLocaleString()}</li>
+<strong>Previous Month Sales:</strong> ${item.previousMonthSales.toLocaleString()}</li>`;
+    });
+    formattedResponse += "</ul>";
+            $('#responseData').html(formattedResponse);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+          }
+        });
+        } else if (selectedValue === 'averageTransactionValue') {
+          $.ajax({
+          url: 'https://localhost:7071/MonthlySales/GetAverageTransactionValueStatistics', 
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(postData), 
+          success: function(response) {
+            console.log('Response:', response); 
+
+            const { stateName, currMonthAvgTransactionValue , prevMonthAvgTransactionValue } = response;
+            let formattedResponse = "<h2>Sales Data:</h2><ul>";
+            response.forEach(function(item) {
+      formattedResponse += `<h2><li><strong>State Name:</strong> ${item.stateName.toLocaleString()} 
+                            <br><strong>Current Month Avg Transaction Value:</strong> ${item.currMonthAvgTransactionValue.toLocaleString()}</li>
+<strong>Previous Month Avg Transaction Value:</strong> ${item.prevMonthAvgTransactionValue.toLocaleString()}</li>`;
+    });
+    formattedResponse += "</ul>";
+            $('#responseData').html(formattedResponse);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+          }
+        });
+        } else if (selectedValue === 'totalValueOfSalesStatistics') {
+          $.ajax({
+          url: 'https://localhost:7071/MonthlySales/GetTotalValueOfSalesStatistics', 
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(postData), 
+          success: function(response) {
+            console.log('Response:', response); 
+
+            const { stateName, currMonthSalesCount , prevMonthSalesCount } = response;
+            let formattedResponse = "<h2>Sales Data:</h2><ul>";
+            response.forEach(function(item) {
+      formattedResponse += `<h2><li><strong>State Name:</strong> ${item.stateName.toLocaleString()} 
+                            <br><strong>Current Month Sales Count:</strong> ${item.currMonthSalesCount.toLocaleString()}</li>
+<strong>Previous Month Sales Count:</strong> ${item.prevMonthSalesCount.toLocaleString()}</li>`;
+    });
+    formattedResponse += "</ul>";
+            $('#responseData').html(formattedResponse);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+          }
+        });
+        } else if (selectedValue === 'salesAsPerProductQuantity') {
+    $.ajax({
+        url: 'https://localhost:7071/MonthlySales/GetSalesAsPerProductQuantity',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(postData),
+        success: function(response) {
+            console.log('Response:', response); 
+
+            let formattedResponse = `
+                <h2>Sales Data:</h2>
+                <table border="1" style="border-collapse: collapse; width: 50%;">
+                    <thead>
+                        <tr>
+                            <th>Product Code</th>
+                            <th>Product Name</th>
+                            <th>State Name</th>
+                            <th>Unit Price (Rs)</th>
+                            <th>Sales Quantity</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+            response.forEach(function(item) {
+                formattedResponse += `
+                    <tr>
+                        <td>${item.productCode.toLocaleString()}</td>
+                        <td>${item.productName.toLocaleString()}</td>
+                        <td>${item.stateName.toLocaleString()}</td>
+                        <td>${item.unitPrice.toLocaleString()}</td>
+                        <td>${item.salesQuantity.toLocaleString()}</td>
+                        <td>${item.totalAmount.toLocaleString()}</td>
+                    </tr>`;
+            });
+
+            formattedResponse += `
+                    </tbody>
+                </table>`;
+                
+            $('#responseData').html(formattedResponse);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+        }
+    });
+} else if (selectedValue === 'salesRegister') {
+    $.ajax({
+        url: 'https://localhost:7071/MonthlySales/GetSalesRegisterReport',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(postData),
+        success: function(response) {
+            console.log('Response:', response); 
+
+            let formattedResponse = `
+                <h2>Sales Data:</h2>
+                <table border="1" style="border-collapse: collapse; width: 30%;">
+                    <thead>
+                        <tr>
+                            <th>Sales ID</th>
+                            <th>Customer Name</th>
+                            <th>State Name</th>
+                            <th>Sales Amount (Rs)</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+            response.forEach(function(item) {
+                formattedResponse += `
+                    <tr>
+                        <td>${item.salesID.toLocaleString()}</td>
+                        <td>${item.customerName.toLocaleString()}</td>
+                        <td>${item.stateName.toLocaleString()}</td>
+                        <td>${item.salesAmount.toLocaleString()}</td>
+                    </tr>`;
+            });
+
+            formattedResponse += `
+                    </tbody>
+                </table>`;
+                
+            $('#responseData').html(formattedResponse);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+        }
+    });
+} else if (selectedValue === 'salesTargetVSActual') {
+    $.ajax({
+        url: 'https://localhost:7071/MonthlySales/GetSalesTargetVSActualMonthly',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(postData),
+        success: function(response) {
+            console.log('Response:', response); 
+
+            let formattedResponseMonthly = `
+                <h2>Sales Data Monthly:</h2>
+                <table border="1" style="border-collapse: collapse; width: 30%;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>State Name</th>
+                            <th>Target Sales</th>
+                            <th>Actual Sales</th>
+                            <th>Difference</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+            response.forEach(function(item) {
+                formattedResponseMonthly += `
+                    <tr>
+                        <td>${item.id.toLocaleString()}</td>
+                        <td>${item.stateName.toLocaleString()}</td>
+                        <td>${item.targetSales.toLocaleString()}</td>
+                        <td>${item.actualSales.toLocaleString()}</td>
+                        <td>${item.difference.toLocaleString()}</td>
+                    </tr>`;
+            });
+
+            formattedResponseMonthly += `
+                    </tbody>
+                </table>`;
+                
+                $('#responseData').append(formattedResponseMonthly); 
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while sending data.');
+        }
+    });
+
+  //GET 
+  
+  $.ajax({
+    url: 'https://localhost:7071/MonthlySales/GetSalesTargetVSActualYearly',
+    type: 'GET', 
+    contentType: 'application/json',
+    data: postData, 
+    success: function(response) {
+        console.log('Response:', response); 
+
+        let formattedResponse = `
+            <h2>Sales Data Yearly:</h2>
+            <table border="1" style="border-collapse: collapse; width: 30%;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>State Name</th>
+                        <th>Target Sales</th>
+                        <th>Actual Sales</th>
+                        <th>Difference</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+        response.forEach(function(item) {
+            formattedResponse += `
+                <tr>
+                    <td>${item.id.toLocaleString()}</td>
+                    <td>${item.stateName.toLocaleString()}</td>
+                    <td>${item.targetSales.toLocaleString()}</td>
+                    <td>${item.actualSales.toLocaleString()}</td>
+                    <td>${item.difference.toLocaleString()}</td>
+                </tr>`;
+        });
+
+        formattedResponse += `
+                </tbody>
+            </table>`;
+            
+        $('#responseData').append(formattedResponse);
+    },
+    error: function(xhr, status, error) {
+        console.error('Error:', error);
+        alert('An error occurred while fetching data.');
+    }
+});
+
+}
+
+
+      });
+    });
+  </script>
+</body>
+</html>

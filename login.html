@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin | Log in</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="#"><b>Admin</b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+
+        <form onsubmit="return loginUser(event)">
+          <div class="input-group mb-3">
+            <input id="emailInput" type="email" class="form-control" placeholder="Email" value="admin@gmail.com">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="passwordInput" type="password" class="form-control" placeholder="Password" value="admin@1234">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8"></div>
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- /.social-auth-links -->
+
+        <p class="mb-1">
+          <a href="forgot-password.html">I forgot my password</a>
+        </p>
+        <p class="mb-0">
+          <a href="lockscreen.html" class="text-center">Register a new membership</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+
+    </div>
+  </div><br>
+  <div id="loginAlert" class="alert alert-danger" style="display: none;" role="alert">
+    Alert : Invalid email or password !
+  </div>
+
+  <!-- /.login-box -->
+
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+
+  <script>
+    function loginUser(event) {
+      event.preventDefault();
+
+      var enteredEmail = $('#emailInput').val();
+      var enteredPassword = $('#passwordInput').val();
+
+      $('#loginAlert').hide();
+
+      $.ajax({
+        url: 'https://localhost:7071/MonthlySales/GetUserLogin',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({}),
+        success: function (response) {
+          var isValidUser = false;
+
+          $.each(response, function (index, user) {
+            if (user.email === enteredEmail && user.password === enteredPassword) {
+              isValidUser = true;
+              return false;
+            }
+          });
+
+          if (isValidUser) {
+            console.log('Login successful');
+            window.location.href = '/index.html';
+          } else {
+            showLoginAlert();
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error('Login check failed:', error);
+          alert('Error while connecting to the server.');
+        }
+      });
+
+      return false;
+    }
+
+    if (emailInput !== correctEmail || passwordInput !== correctPassword) {
+
+    }
+    function showLoginAlert() {
+      $('#loginAlert').stop(true, true).fadeIn(300);
+      setTimeout(function () {
+        $('#loginAlert').fadeOut(1000);
+      }, 3000);
+    }
+
+  </script>
+</body>
+
+</html>
